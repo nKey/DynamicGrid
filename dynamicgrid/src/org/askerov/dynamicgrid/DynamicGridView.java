@@ -595,6 +595,9 @@ public class DynamicGridView extends GridView {
                 mHoverAnimation = false;
                 updateEnableState();
                 reset(mobileView);
+                if (mDropListener != null) {
+                    mDropListener.onActionDropAfterAnimation();
+                }
             }
         });
         hoverViewAnimator.start();
@@ -829,6 +832,7 @@ public class DynamicGridView extends GridView {
 
     public interface OnDropListener {
         void onActionDrop();
+        void onActionDropAfterAnimation();
     }
 
     public interface OnDragListener {
