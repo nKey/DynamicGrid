@@ -29,6 +29,8 @@ import java.util.*;
  * Time: 12:31 PM
  */
 public class DynamicGridView extends GridView {
+    public static final int TAG_REORDER_DISABLED = R.id.dgv_reorder_disabled_tag;
+
     private static final int INVALID_ID = -1;
 
     private static final int MOVE_DURATION = 300;
@@ -392,6 +394,10 @@ public class DynamicGridView extends GridView {
         return null;
     }
 
+    private boolean hasViewReorderEnabled(View v) {
+        return v != null && true != v.getTag(TAG_REORDER_DISABLED);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
@@ -482,7 +488,7 @@ public class DynamicGridView extends GridView {
         mTotalOffsetX = 0;
         int itemNum = position - getFirstVisiblePosition();
         View selectedView = getChildAt(itemNum);
-        if (selectedView != null) {
+        if (selectedView != null && hasViewReorderEnabled(selectedView)) {
             mMobileItemId = getAdapter().getItemId(position);
             if (mSelectedItemBitmapCreationListener != null)
                 mSelectedItemBitmapCreationListener.onPreSelectedItemBitmapCreation(selectedView, position, mMobileItemId);
@@ -680,7 +686,7 @@ public class DynamicGridView extends GridView {
                 }
             }
         }
-        if (targetView != null) {
+        if (targetView != null && hasViewReorderEnabled(targetView)) {
             final int originalPosition = getPositionForView(mobileView);
             int targetPosition = getPositionForView(targetView);
 
