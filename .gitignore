@@ -32,6 +32,8 @@ dynamicgrid/project.properties
 
 dynamicgrid/proguard-project.txt
 
+dynamicgrid/build/
+
 dynamicgrid/build.xml
 
 dynamicgrid/ant.properties
@@ -41,6 +43,8 @@ dynamicgrid/.idea/
 dynamicgrid/.idea/codeStyleSettings.xml
 
 example/.idea/
+
+example/build/
 
 example/build.xml
 
