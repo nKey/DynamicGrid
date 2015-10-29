@@ -395,7 +395,7 @@ public class DynamicGridView extends GridView {
     }
 
     private boolean hasViewReorderEnabled(View v) {
-        return v != null && true != v.getTag(TAG_REORDER_DISABLED);
+        return v != null && v.getTag(TAG_REORDER_DISABLED).toString() != "true";
     }
 
     @Override
